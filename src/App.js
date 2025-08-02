@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import DriverApplicationForm from "./components/DriverApplicationForm";
+import DriverList from "./components/DriverList";
+import BookingForm from "./components/BookingForm";
 
 function App() {
+  const [view, setView] = useState("drivers");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-gray-100 min-h-screen">
+      <Navbar setView={setView} />
+      <div className="container mx-auto p-6">
+        {view === "drivers" && <DriverList />}
+        {view === "apply" && <DriverApplicationForm />}
+        {view === "book" && <BookingForm />}
+      </div>
     </div>
   );
 }
